@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Recherche inversée d'image pour trouver où acheter un produit de tricot à partir d'une photo.">
+    <title>Recherche Image | Tricot Facile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧶</span>
+                <span class="logo-text">Tricot Facile</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="convertisseurs.html" class="nav-link">Convertisseurs</a></li>
+                <li><a href="traducteur.html" class="nav-link">Traducteur</a></li>
+                <li><a href="equivalent-laine.html" class="nav-link">Équivalent Laine</a></li>
+                <li><a href="repertoire.html" class="nav-link">Répertoire</a></li>
+                <li><a href="recherche-image.html" class="nav-link active">Recherche Image</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1>🔍 Recherche Image</h1>
+            <p>Trouvez où acheter un produit de tricot à partir d'une photo. Uploadez une image et lancez une recherche
+                inversée.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 style="margin: 0;">📤 Télécharger une image</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info mb-3">
+                        <strong>ℹ️ Comment ça marche :</strong>
+                        <ol style="margin: 0.5rem 0 0 1.5rem;">
+                            <li>Téléchargez une image du produit que vous cherchez</li>
+                            <li>Cliquez sur l'un des moteurs de recherche</li>
+                            <li>L'image sera envoyée au service choisi pour une recherche inversée</li>
+                        </ol>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-file-upload" id="drop-zone">
+                            <input type="file" id="image-input" accept="image/*">
+                            <div class="form-file-upload-icon">🖼️</div>
+                            <div class="form-file-upload-text">Cliquez ou glissez une image ici</div>
+                            <div class="form-file-upload-hint">Formats acceptés : JPG, PNG, GIF, WebP</div>
+                        </div>
+                    </div>
+
+                    <!-- Image Preview -->
+                    <div id="image-preview" class="panel mt-3" style="display: none;">
+                        <div style="display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">
+                            <div style="flex: 0 0 200px;">
+                                <img id="preview-img" src="" alt="Aperçu"
+                                    style="max-width: 100%; border-radius: 8px; box-shadow: var(--shadow-md);">
+                            </div>
+                            <div style="flex: 1; min-width: 250px;">
+                                <h4 style="margin-bottom: 1rem;">Lancer la recherche sur :</h4>
+
+                                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                    <button class="btn btn-primary" id="search-google">
+                                        🔍 Google Lens
+                                    </button>
+                                    <button class="btn btn-secondary" id="search-tineye">
+                                        🔍 TinEye
+                                    </button>
+                                    <button class="btn btn-secondary" id="search-bing">
+                                        🔍 Bing Images
+                                    </button>
+                                    <button class="btn btn-secondary" id="search-yandex">
+                                        🔍 Yandex Images
+                                    </button>
+                                </div>
+
+                                <p class="text-muted mt-3" style="font-size: 0.875rem;">
+                                    💡 Conseil : Google Lens est généralement le plus efficace pour trouver des
+                                    produits.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alternative: URL Search -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 style="margin: 0;">🌐 Recherche par URL</h3>
+                </div>
+                <div class="card-body">
+                    <p class="mb-3">Vous avez l'URL d'une image ? Collez-la ici pour lancer une recherche inversée :</p>
+
+                    <div class="form-group">
+                        <label class="form-label">URL de l'image</label>
+                        <input type="url" class="form-input" id="image-url" placeholder="https://example.com/image.jpg">
+                    </div>
+
+                    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                        <a id="url-google" href="#" target="_blank" class="btn btn-primary"
+                            style="pointer-events: none; opacity: 0.5;">
+                            🔍 Google Lens
+                        </a>
+                        <a id="url-tineye" href="#" target="_blank" class="btn btn-secondary"
+                            style="pointer-events: none; opacity: 0.5;">
+                            🔍 TinEye
+                        </a>
+                        <a id="url-bing" href="#" target="_blank" class="btn btn-secondary"
+                            style="pointer-events: none; opacity: 0.5;">
+                            🔍 Bing
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 style="margin: 0;">💡 Conseils pour de meilleurs résultats</h3>
+                </div>
+                <div class="card-body">
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div class="panel">
+                            <h4 class="panel-title">📸 Qualité de l'image</h4>
+                            <ul style="margin: 0; padding-left: 1.25rem;">
+                                <li>Utilisez une image nette et bien éclairée</li>
+                                <li>Évitez les images floues ou pixelisées</li>
+                                <li>Recadrez pour montrer uniquement le produit</li>
+                            </ul>
+                        </div>
+
+                        <div class="panel">
+                            <h4 class="panel-title">🎯 Cibler le produit</h4>
+                            <ul style="margin: 0; padding-left: 1.25rem;">
+                                <li>L'image doit montrer clairement le produit</li>
+                                <li>Évitez les photos avec trop d'éléments</li>
+                                <li>Les photos de catalogue fonctionnent bien</li>
+                            </ul>
+                        </div>
+
+                        <div class="panel">
+                            <h4 class="panel-title">🔍 Essayez plusieurs moteurs</h4>
+                            <ul style="margin: 0; padding-left: 1.25rem;">
+                                <li>Google Lens : meilleur pour les produits</li>
+                                <li>TinEye : trouve les sources originales</li>
+                                <li>Yandex : parfois meilleur pour les images rares</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning mt-3">
+                        <strong>⚠️ Note :</strong> La recherche inversée d'image fonctionne mieux avec les produits
+                        commerciaux.
+                        Pour les créations faites main ou les modèles tricotés, les résultats peuvent être limités.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">🧶</span>
+                    <span class="logo-text">Tricot Facile</span>
+                    <p>La boîte à outils des passionné(e)s de tricot</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Outils</h4>
+                        <ul>
+                            <li><a href="convertisseurs.html">Convertisseurs</a></li>
+                            <li><a href="traducteur.html">Traducteur</a></li>
+                            <li><a href="equivalent-laine.html">Équivalent Laine</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Ressources</h4>
+                        <ul>
+                            <li><a href="repertoire.html">Répertoire</a></li>
+                            <li><a href="recherche-image.html">Recherche Image</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Tricot Facile. Fait avec 🧶 pour les tricoteuses et tricoteurs.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/recherche-image.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

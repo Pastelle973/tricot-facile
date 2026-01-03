@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Trouvez une laine équivalente moins chère et calculez la quantité nécessaire pour votre projet de tricot.">
+    <title>Équivalent Laine | Tricot Facile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧶</span>
+                <span class="logo-text">Tricot Facile</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="convertisseurs.html" class="nav-link">Convertisseurs</a></li>
+                <li><a href="traducteur.html" class="nav-link">Traducteur</a></li>
+                <li><a href="equivalent-laine.html" class="nav-link active">Équivalent Laine</a></li>
+                <li><a href="repertoire.html" class="nav-link">Répertoire</a></li>
+                <li><a href="recherche-image.html" class="nav-link">Recherche Image</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1>🧶 Équivalent Laine</h1>
+            <p>Trouvez une laine alternative moins chère et calculez la quantité nécessaire pour votre projet.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+
+            <!-- Yarn Calculator -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 style="margin: 0;">📊 Calculateur de Quantité</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info mb-3">
+                        <strong>ℹ️ Comment ça marche :</strong> Entrez les informations de la laine du modèle et de la
+                        laine de remplacement. Le calculateur vous donnera le nombre de pelotes nécessaires.
+                    </div>
+
+                    <div class="yarn-comparison">
+                        <!-- Original Yarn -->
+                        <div class="yarn-card original">
+                            <div class="yarn-card-icon">🏷️</div>
+                            <h4 class="yarn-card-title">Laine du modèle</h4>
+                            <div class="form-group">
+                                <label class="form-label">Catégorie</label>
+                                <select class="form-select" id="original-weight">
+                                    <option value="">Choisir...</option>
+                                    <option value="0">0 - Lace (Dentelle)</option>
+                                    <option value="1">1 - Super Fine (Fingering)</option>
+                                    <option value="2">2 - Fine (Sport)</option>
+                                    <option value="3">3 - Light (DK)</option>
+                                    <option value="4">4 - Medium (Worsted)</option>
+                                    <option value="5">5 - Bulky (Chunky)</option>
+                                    <option value="6">6 - Super Bulky</option>
+                                    <option value="7">7 - Jumbo</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Métrage par pelote</label>
+                                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <input type="number" class="form-input" id="original-meters" placeholder="200"
+                                        min="1">
+                                    <span>m</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Nombre de pelotes</label>
+                                <input type="number" class="form-input" id="original-skeins" placeholder="5" min="1">
+                            </div>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="yarn-arrow">→</div>
+
+                        <!-- Replacement Yarn -->
+                        <div class="yarn-card equivalent">
+                            <div class="yarn-card-icon">✨</div>
+                            <h4 class="yarn-card-title">Laine de remplacement</h4>
+                            <div class="form-group">
+                                <label class="form-label">Catégorie</label>
+                                <select class="form-select" id="replacement-weight">
+                                    <option value="">Choisir...</option>
+                                    <option value="0">0 - Lace (Dentelle)</option>
+                                    <option value="1">1 - Super Fine (Fingering)</option>
+                                    <option value="2">2 - Fine (Sport)</option>
+                                    <option value="3">3 - Light (DK)</option>
+                                    <option value="4">4 - Medium (Worsted)</option>
+                                    <option value="5">5 - Bulky (Chunky)</option>
+                                    <option value="6">6 - Super Bulky</option>
+                                    <option value="7">7 - Jumbo</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Métrage par pelote</label>
+                                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <input type="number" class="form-input" id="replacement-meters" placeholder="150"
+                                        min="1">
+                                    <span>m</span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-0">
+                                <label class="form-label">Pelotes nécessaires</label>
+                                <div class="result-box" style="padding: 1rem;">
+                                    <span class="result-value" id="result-skeins">--</span>
+                                    <span class="result-note">pelotes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <button class="btn btn-primary" id="calculate-btn">🧮 Calculer</button>
+                    </div>
+
+                    <!-- Calculation Details -->
+                    <div id="calculation-details" class="panel mt-3" style="display: none;">
+                        <h4 class="panel-title">📝 Détails du calcul</h4>
+                        <div id="calculation-text"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yarn Alternatives -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 style="margin: 0;">💡 Suggestions d'alternatives</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="form-label">Type de laine à remplacer</label>
+                        <select class="form-select" id="fiber-type">
+                            <option value="">Choisir un type de laine...</option>
+                            <option value="cashmere">Cachemire</option>
+                            <option value="silk">Soie</option>
+                            <option value="alpaca">Alpaga</option>
+                            <option value="mohair">Mohair</option>
+                            <option value="merino">Mérinos</option>
+                            <option value="wool">Laine standard</option>
+                        </select>
+                    </div>
+
+                    <div id="alternatives-list" style="display: none;">
+                        <!-- Les alternatives seront générées par JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yarn Weight Guide -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 style="margin: 0;">📚 Guide des Catégories de Laine</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Catégorie</th>
+                                    <th>Nom</th>
+                                    <th>Aiguilles</th>
+                                    <th>Échantillon (10cm)</th>
+                                    <th>Usages courants</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="badge badge-beige">0</span></td>
+                                    <td>Lace / Dentelle</td>
+                                    <td>1.5 - 2.25 mm</td>
+                                    <td>33-40 m.</td>
+                                    <td>Châles, dentelle</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-beige">1</span></td>
+                                    <td>Super Fine / Fingering</td>
+                                    <td>2.25 - 3.25 mm</td>
+                                    <td>27-32 m.</td>
+                                    <td>Chaussettes, layette</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-beige">2</span></td>
+                                    <td>Fine / Sport</td>
+                                    <td>3.25 - 3.75 mm</td>
+                                    <td>23-26 m.</td>
+                                    <td>Layette, accessoires</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-sage">3</span></td>
+                                    <td>Light / DK</td>
+                                    <td>3.75 - 4.5 mm</td>
+                                    <td>21-24 m.</td>
+                                    <td>Pulls légers, accessoires</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-sage">4</span></td>
+                                    <td>Medium / Worsted</td>
+                                    <td>4.5 - 5.5 mm</td>
+                                    <td>16-20 m.</td>
+                                    <td>Pulls, gilets</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-terracotta">5</span></td>
+                                    <td>Bulky / Chunky</td>
+                                    <td>5.5 - 8 mm</td>
+                                    <td>12-15 m.</td>
+                                    <td>Gros pulls, accessoires</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-terracotta">6</span></td>
+                                    <td>Super Bulky</td>
+                                    <td>8 - 12 mm</td>
+                                    <td>7-11 m.</td>
+                                    <td>Couvertures, décoration</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-terracotta">7</span></td>
+                                    <td>Jumbo</td>
+                                    <td>12+ mm</td>
+                                    <td>6 m. ou moins</td>
+                                    <td>XXL tricot</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Where to Buy -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 style="margin: 0;">🛒 Où acheter ?</h3>
+                </div>
+                <div class="card-body">
+                    <p class="mb-3">Voici quelques boutiques en ligne fiables pour acheter de la laine de qualité :</p>
+
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <div class="resource-card-image">🇫🇷</div>
+                            <div class="resource-card-content">
+                                <h4 class="resource-card-title">DROPS / Garnstudio</h4>
+                                <p class="resource-card-desc">Laines économiques de qualité + modèles gratuits</p>
+                                <a href="https://www.garnstudio.com/lang/fr/" target="_blank"
+                                    class="resource-card-link">Visiter →</a>
+                            </div>
+                        </div>
+
+                        <div class="resource-card">
+                            <div class="resource-card-image">🇩🇰</div>
+                            <div class="resource-card-content">
+                                <h4 class="resource-card-title">Hobbii</h4>
+                                <p class="resource-card-desc">Large choix, prix bas, livraison Europe</p>
+                                <a href="https://hobbii.fr" target="_blank" class="resource-card-link">Visiter →</a>
+                            </div>
+                        </div>
+
+                        <div class="resource-card">
+                            <div class="resource-card-image">🇫🇷</div>
+                            <div class="resource-card-content">
+                                <h4 class="resource-card-title">Bergère de France</h4>
+                                <p class="resource-card-desc">Marque française, large gamme</p>
+                                <a href="https://www.bergeredefrance.fr" target="_blank"
+                                    class="resource-card-link">Visiter →</a>
+                            </div>
+                        </div>
+
+                        <div class="resource-card">
+                            <div class="resource-card-image">🇫🇷</div>
+                            <div class="resource-card-content">
+                                <h4 class="resource-card-title">Laines Cheval Blanc</h4>
+                                <p class="resource-card-desc">Qualité française, prix abordables</p>
+                                <a href="https://www.laines-cheval-blanc.com" target="_blank"
+                                    class="resource-card-link">Visiter →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">🧶</span>
+                    <span class="logo-text">Tricot Facile</span>
+                    <p>La boîte à outils des passionné(e)s de tricot</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Outils</h4>
+                        <ul>
+                            <li><a href="convertisseurs.html">Convertisseurs</a></li>
+                            <li><a href="traducteur.html">Traducteur</a></li>
+                            <li><a href="equivalent-laine.html">Équivalent Laine</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Ressources</h4>
+                        <ul>
+                            <li><a href="repertoire.html">Répertoire</a></li>
+                            <li><a href="recherche-image.html">Recherche Image</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Tricot Facile. Fait avec 🧶 pour les tricoteuses et tricoteurs.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/equivalent-laine.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

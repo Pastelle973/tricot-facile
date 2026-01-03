@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Traduisez vos patrons de tricot anglais en français avec les termes techniques, dimensions et tailles d'aiguilles convertis automatiquement.">
+    <title>Traducteur de Modèles | Tricot Facile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧶</span>
+                <span class="logo-text">Tricot Facile</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="convertisseurs.html" class="nav-link">Convertisseurs</a></li>
+                <li><a href="traducteur.html" class="nav-link active">Traducteur</a></li>
+                <li><a href="equivalent-laine.html" class="nav-link">Équivalent Laine</a></li>
+                <li><a href="repertoire.html" class="nav-link">Répertoire</a></li>
+                <li><a href="recherche-image.html" class="nav-link">Recherche Image</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1>📝 Traducteur de Modèles</h1>
+            <p>Traduisez vos patrons anglais en français avec conversion automatique des termes techniques, dimensions
+                et tailles d'aiguilles.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+
+            <!-- Input Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="text">📄 Texte</button>
+                <button class="tab-btn" data-tab="url">🌐 URL</button>
+                <button class="tab-btn" data-tab="file">📁 Fichier</button>
+                <button class="tab-btn" data-tab="image">🖼️ Image</button>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+
+                    <!-- Tab: Text Input -->
+                    <div class="tab-content active" id="tab-text">
+                        <div class="form-group">
+                            <label class="form-label">Collez votre texte anglais ici</label>
+                            <textarea class="form-textarea" id="text-input" rows="10"
+                                placeholder="Cast on 120 sts using US 5 needles. Work in stockinette stitch for 4 inches..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Tab: URL Input -->
+                    <div class="tab-content" id="tab-url">
+                        <div class="alert alert-info mb-3">
+                            <strong>ℹ️ Note :</strong> Entrez l'URL d'une page de patron. Le contenu sera extrait et
+                            traduit.
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">URL du patron</label>
+                            <input type="url" class="form-input" id="url-input"
+                                placeholder="https://www.example.com/pattern">
+                        </div>
+                        <div class="alert alert-warning">
+                            <strong>⚠️ Limitation :</strong> Certains sites bloquent l'extraction de contenu. Si cela ne
+                            fonctionne pas, copiez-collez le texte manuellement dans l'onglet "Texte".
+                        </div>
+                    </div>
+
+                    <!-- Tab: File Input -->
+                    <div class="tab-content" id="tab-file">
+                        <div class="form-group">
+                            <label class="form-label">Télécharger un fichier (PDF ou TXT)</label>
+                            <div class="form-file-upload">
+                                <input type="file" id="file-input" accept=".pdf,.txt,.doc,.docx">
+                                <div class="form-file-upload-icon">📄</div>
+                                <div class="form-file-upload-text">Cliquez ou glissez un fichier ici</div>
+                                <div class="form-file-upload-hint">Formats acceptés : PDF, TXT</div>
+                            </div>
+                        </div>
+                        <div id="file-name" class="mt-2" style="display: none;"></div>
+                    </div>
+
+                    <!-- Tab: Image Input -->
+                    <div class="tab-content" id="tab-image">
+                        <div class="alert alert-info mb-3">
+                            <strong>ℹ️ OCR :</strong> L'image sera analysée pour extraire le texte (reconnaissance
+                            optique de caractères).
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Télécharger une image</label>
+                            <div class="form-file-upload">
+                                <input type="file" id="image-input" accept="image/*">
+                                <div class="form-file-upload-icon">🖼️</div>
+                                <div class="form-file-upload-text">Cliquez ou glissez une image ici</div>
+                                <div class="form-file-upload-hint">Formats acceptés : JPG, PNG, GIF, WebP</div>
+                            </div>
+                        </div>
+                        <div id="image-preview" class="mt-2" style="display: none;">
+                            <img id="preview-img" src="" alt="Aperçu"
+                                style="max-width: 100%; max-height: 300px; border-radius: 8px;">
+                        </div>
+                    </div>
+
+                    <!-- Translation Options -->
+                    <div class="panel mt-3">
+                        <h4 class="panel-title">⚙️ Options de traduction</h4>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="opt-technical" checked>
+                                <span>Traduire les termes techniques</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="opt-needles" checked>
+                                <span>Convertir les aiguilles</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="opt-dimensions" checked>
+                                <span>Convertir les dimensions</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" id="opt-highlight" checked>
+                                <span>Surligner les modifications</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Translate Button -->
+                    <div class="mt-3" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn btn-primary" id="translate-btn">
+                            🔄 Traduire
+                        </button>
+                        <button class="btn btn-secondary" id="clear-btn">
+                            🗑️ Effacer
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <div id="loading" class="text-center" style="display: none; padding: 2rem;">
+                <div class="spinner" style="margin: 0 auto;"></div>
+                <p class="mt-2">Traduction en cours...</p>
+            </div>
+
+            <!-- Results -->
+            <div id="results" style="display: none;">
+                <div class="card">
+                    <div class="card-header"
+                        style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="margin: 0;">📋 Résultat</h3>
+                        <button class="btn btn-secondary" id="copy-btn" style="padding: 0.5rem 1rem;">
+                            📋 Copier
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="translation-output" class="translation-output"></div>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="panel mt-3">
+                    <h4 class="panel-title">📊 Statistiques</h4>
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; text-align: center;">
+                        <div>
+                            <div id="stat-terms"
+                                style="font-size: 1.5rem; font-weight: 700; color: var(--color-terracotta);">0</div>
+                            <div style="font-size: 0.875rem; color: var(--color-charcoal-light);">Termes traduits</div>
+                        </div>
+                        <div>
+                            <div id="stat-needles"
+                                style="font-size: 1.5rem; font-weight: 700; color: var(--color-sage);">0</div>
+                            <div style="font-size: 0.875rem; color: var(--color-charcoal-light);">Aiguilles converties
+                            </div>
+                        </div>
+                        <div>
+                            <div id="stat-dimensions"
+                                style="font-size: 1.5rem; font-weight: 700; color: var(--color-beige-dark);">0</div>
+                            <div style="font-size: 0.875rem; color: var(--color-charcoal-light);">Dimensions converties
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Found Terms Glossary -->
+                <div class="card mt-3" id="glossary-section" style="display: none;">
+                    <div class="card-header">
+                        <h3 style="margin: 0;">📚 Glossaire des termes trouvés</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="glossary-content" class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Anglais</th>
+                                        <th>Français</th>
+                                        <th>Note</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="glossary-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dictionary Search -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h3 style="margin: 0;">🔍 Recherche dans le dictionnaire</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <input type="text" class="form-input" id="dict-search"
+                            placeholder="Rechercher un terme (anglais ou français)...">
+                    </div>
+                    <div id="dict-results" style="max-height: 400px; overflow-y: auto;"></div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">🧶</span>
+                    <span class="logo-text">Tricot Facile</span>
+                    <p>La boîte à outils des passionné(e)s de tricot</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Outils</h4>
+                        <ul>
+                            <li><a href="convertisseurs.html">Convertisseurs</a></li>
+                            <li><a href="traducteur.html">Traducteur</a></li>
+                            <li><a href="equivalent-laine.html">Équivalent Laine</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Ressources</h4>
+                        <ul>
+                            <li><a href="repertoire.html">Répertoire</a></li>
+                            <li><a href="recherche-image.html">Recherche Image</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Tricot Facile. Fait avec 🧶 pour les tricoteuses et tricoteurs.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tesseract.js for OCR -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <!-- PDF.js for PDF parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <script src="js/dictionnaire.js"></script>
+    <script src="js/convertisseurs.js"></script>
+    <script src="js/traducteur.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

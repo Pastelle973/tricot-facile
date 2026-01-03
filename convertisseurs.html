@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Convertisseurs tricot : aiguilles US/UK vers métrique, pouces vers centimètres, tailles de vêtements internationales.">
+    <title>Convertisseurs | Tricot Facile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧶</span>
+                <span class="logo-text">Tricot Facile</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="convertisseurs.html" class="nav-link active">Convertisseurs</a></li>
+                <li><a href="traducteur.html" class="nav-link">Traducteur</a></li>
+                <li><a href="equivalent-laine.html" class="nav-link">Équivalent Laine</a></li>
+                <li><a href="repertoire.html" class="nav-link">Répertoire</a></li>
+                <li><a href="recherche-image.html" class="nav-link">Recherche Image</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1>🔄 Convertisseurs</h1>
+            <p>Convertissez facilement les tailles d'aiguilles, les dimensions en pouces et les tailles de vêtements
+                entre les systèmes américain, britannique et français.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+
+            <!-- Tabs Navigation -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="aiguilles">🪡 Aiguilles</button>
+                <button class="tab-btn" data-tab="dimensions">📐 Pouces → cm</button>
+                <button class="tab-btn" data-tab="tailles">👕 Tailles Vêtements</button>
+                <button class="tab-btn" data-tab="tableau">📊 Tableaux Complets</button>
+            </div>
+
+            <!-- Tab: Aiguilles -->
+            <div class="tab-content active" id="tab-aiguilles">
+                <div class="converter-grid">
+                    <!-- US to Metric -->
+                    <div class="converter-card">
+                        <h3><span>🇺🇸</span> US → Métrique</h3>
+                        <div class="converter-row">
+                            <div class="form-group">
+                                <label class="form-label">Taille US</label>
+                                <select class="form-select" id="needle-us-input">
+                                    <option value="">Choisir...</option>
+                                    <option value="0">US 0</option>
+                                    <option value="1">US 1</option>
+                                    <option value="1.5">US 1.5</option>
+                                    <option value="2">US 2</option>
+                                    <option value="2.5">US 2.5</option>
+                                    <option value="3">US 3</option>
+                                    <option value="4">US 4</option>
+                                    <option value="5">US 5</option>
+                                    <option value="6">US 6</option>
+                                    <option value="7">US 7</option>
+                                    <option value="8">US 8</option>
+                                    <option value="9">US 9</option>
+                                    <option value="10">US 10</option>
+                                    <option value="10.5">US 10.5</option>
+                                    <option value="10.75">US 10.75</option>
+                                    <option value="11">US 11</option>
+                                    <option value="13">US 13</option>
+                                    <option value="15">US 15</option>
+                                    <option value="17">US 17</option>
+                                    <option value="19">US 19</option>
+                                    <option value="35">US 35</option>
+                                    <option value="50">US 50</option>
+                                </select>
+                            </div>
+                            <span class="converter-arrow">→</span>
+                            <div class="form-group">
+                                <label class="form-label">Taille Métrique</label>
+                                <div class="result-box">
+                                    <span class="result-value" id="needle-us-result">--</span>
+                                    <span class="result-note">mm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UK to Metric -->
+                    <div class="converter-card">
+                        <h3><span>🇬🇧</span> UK → Métrique</h3>
+                        <div class="converter-row">
+                            <div class="form-group">
+                                <label class="form-label">Taille UK</label>
+                                <select class="form-select" id="needle-uk-input">
+                                    <option value="">Choisir...</option>
+                                    <option value="14">UK 14</option>
+                                    <option value="13">UK 13</option>
+                                    <option value="12">UK 12</option>
+                                    <option value="11">UK 11</option>
+                                    <option value="10">UK 10</option>
+                                    <option value="9">UK 9</option>
+                                    <option value="8">UK 8</option>
+                                    <option value="7">UK 7</option>
+                                    <option value="6">UK 6</option>
+                                    <option value="5">UK 5</option>
+                                    <option value="4">UK 4</option>
+                                    <option value="3">UK 3</option>
+                                    <option value="2">UK 2</option>
+                                    <option value="1">UK 1</option>
+                                    <option value="0">UK 0</option>
+                                    <option value="00">UK 00</option>
+                                    <option value="000">UK 000</option>
+                                </select>
+                            </div>
+                            <span class="converter-arrow">→</span>
+                            <div class="form-group">
+                                <label class="form-label">Taille Métrique</label>
+                                <div class="result-box">
+                                    <span class="result-value" id="needle-uk-result">--</span>
+                                    <span class="result-note">mm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Metric to US/UK -->
+                    <div class="converter-card">
+                        <h3><span>🇫🇷</span> Métrique → US / UK</h3>
+                        <div class="converter-row">
+                            <div class="form-group">
+                                <label class="form-label">Taille mm</label>
+                                <select class="form-select" id="needle-metric-input">
+                                    <option value="">Choisir...</option>
+                                    <option value="2">2 mm</option>
+                                    <option value="2.25">2.25 mm</option>
+                                    <option value="2.5">2.5 mm</option>
+                                    <option value="2.75">2.75 mm</option>
+                                    <option value="3">3 mm</option>
+                                    <option value="3.25">3.25 mm</option>
+                                    <option value="3.5">3.5 mm</option>
+                                    <option value="3.75">3.75 mm</option>
+                                    <option value="4">4 mm</option>
+                                    <option value="4.5">4.5 mm</option>
+                                    <option value="5">5 mm</option>
+                                    <option value="5.5">5.5 mm</option>
+                                    <option value="6">6 mm</option>
+                                    <option value="6.5">6.5 mm</option>
+                                    <option value="7">7 mm</option>
+                                    <option value="8">8 mm</option>
+                                    <option value="9">9 mm</option>
+                                    <option value="10">10 mm</option>
+                                    <option value="12">12 mm</option>
+                                    <option value="15">15 mm</option>
+                                    <option value="19">19 mm</option>
+                                    <option value="25">25 mm</option>
+                                </select>
+                            </div>
+                            <span class="converter-arrow">→</span>
+                            <div class="form-group">
+                                <label class="form-label">Résultat</label>
+                                <div class="result-box">
+                                    <span class="result-value" id="needle-metric-result-us">--</span>
+                                    <span class="result-note" id="needle-metric-result-uk">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cable Length -->
+                    <div class="converter-card">
+                        <h3><span>🔗</span> Longueur Câble Circulaire</h3>
+                        <div class="converter-row">
+                            <div class="form-group">
+                                <label class="form-label">Longueur (pouces)</label>
+                                <select class="form-select" id="cable-input">
+                                    <option value="">Choisir...</option>
+                                    <option value="9">9"</option>
+                                    <option value="12">12"</option>
+                                    <option value="16">16"</option>
+                                    <option value="20">20"</option>
+                                    <option value="24">24"</option>
+                                    <option value="29">29"</option>
+                                    <option value="32">32"</option>
+                                    <option value="36">36"</option>
+                                    <option value="40">40"</option>
+                                    <option value="47">47"</option>
+                                    <option value="60">60"</option>
+                                </select>
+                            </div>
+                            <span class="converter-arrow">→</span>
+                            <div class="form-group">
+                                <label class="form-label">Longueur (cm)</label>
+                                <div class="result-box">
+                                    <span class="result-value" id="cable-result">--</span>
+                                    <span class="result-note">cm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example Box -->
+                <div class="alert alert-info mt-4">
+                    <strong>💡 Exemple :</strong> Pour « US 5, 24-INCH CIRCULAR NEEDLES » → Aiguilles circulaires
+                    <strong>3,75 mm</strong>, câble <strong>60 cm</strong>
+                </div>
+            </div>
+
+            <!-- Tab: Dimensions -->
+            <div class="tab-content" id="tab-dimensions">
+                <div class="converter-grid">
+                    <!-- Inches to CM -->
+                    <div class="converter-card">
+                        <h3><span>📐</span> Pouces → Centimètres</h3>
+                        <div class="converter-row">
+                            <div class="form-group">
+                                <label class="form-label">Valeur en pouces</label>
+                                <input type="text" class="form-input" id="inches-input" placeholder="Ex: 24 ou 34 1/4">
+                            </div>
+                            <span class="converter-arrow">→</span>
+                            <div class="form-group">
+                                <label class="form-label">Résultat</label>
+                                <div class="result-box">
+                                    <span class="result-value" id="cm-result">--</span>
+                                    <span class="result-note">cm</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-muted mt-2" style="font-size: 0.875rem;">
+                            Formats acceptés : 24, 34.5, 34 1/4, 34½, 34 ½
+                        </p>
+                    </div>
+
+                    <!-- CM to Inches -->
+                    <div class="converter-card">
+                        <h3><span>📏</span> Centimètres → Pouces</h3>
+                        <div class="converter-row">
+                            <div class="form-group">
+                                <label class="form-label">Valeur en cm</label>
+                                <input type="number" class="form-input" id="cm-input" placeholder="Ex: 61" step="0.1">
+                            </div>
+                            <span class="converter-arrow">→</span>
+                            <div class="form-group">
+                                <label class="form-label">Résultat</label>
+                                <div class="result-box">
+                                    <span class="result-value" id="inches-result">--</span>
+                                    <span class="result-note">pouces</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Conversions -->
+                    <div class="converter-card" style="grid-column: 1 / -1;">
+                        <h3><span>⚡</span> Conversions Rapides</h3>
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Pouces</th>
+                                        <th>Centimètres</th>
+                                        <th>Usage courant</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1"</td>
+                                        <td>2.54 cm</td>
+                                        <td>Mesure de base</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4"</td>
+                                        <td>10.16 cm</td>
+                                        <td>Échantillon standard</td>
+                                    </tr>
+                                    <tr>
+                                        <td>16"</td>
+                                        <td>40.64 cm</td>
+                                        <td>Câble pour bonnets</td>
+                                    </tr>
+                                    <tr>
+                                        <td>24"</td>
+                                        <td>60.96 cm</td>
+                                        <td>Câble pour pulls</td>
+                                    </tr>
+                                    <tr>
+                                        <td>32"</td>
+                                        <td>81.28 cm</td>
+                                        <td>Câble pour couvertures</td>
+                                    </tr>
+                                    <tr>
+                                        <td>40"</td>
+                                        <td>101.6 cm</td>
+                                        <td>Magic loop</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Tailles -->
+            <div class="tab-content" id="tab-tailles">
+                <div class="converter-grid">
+                    <!-- Size Converter -->
+                    <div class="converter-card" style="grid-column: 1 / -1;">
+                        <h3><span>👕</span> Convertisseur de Tailles</h3>
+
+                        <div class="alert alert-info mb-3">
+                            <strong>ℹ️ Note :</strong> Les tailles en pouces indiquent généralement le <strong>tour de
+                                poitrine</strong> (chest circumference).
+                            Les tailles US et UK diffèrent légèrement.
+                        </div>
+
+                        <div class="converter-row">
+                            <div class="form-group">
+                                <label class="form-label">Tour de poitrine (pouces)</label>
+                                <input type="text" class="form-input" id="size-inches-input" placeholder="Ex: 44 1/2">
+                            </div>
+                            <span class="converter-arrow">→</span>
+                            <div class="form-group">
+                                <label class="form-label">Tailles équivalentes</label>
+                                <div id="size-results" style="display: grid; gap: 0.5rem;">
+                                    <div class="result-box" style="padding: 1rem;">
+                                        <span class="result-label">Tour de poitrine</span>
+                                        <span class="result-value" id="size-cm-result" style="font-size: 1.5rem;">--
+                                            cm</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="size-details" class="mt-3" style="display: none;">
+                            <div
+                                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+                                <div class="panel">
+                                    <div class="panel-title">🇫🇷 Taille FR</div>
+                                    <div id="size-fr"
+                                        style="font-size: 1.5rem; font-weight: 700; color: var(--color-terracotta);">--
+                                    </div>
+                                </div>
+                                <div class="panel">
+                                    <div class="panel-title">🇺🇸 Taille US</div>
+                                    <div id="size-us"
+                                        style="font-size: 1.5rem; font-weight: 700; color: var(--color-sage);">--</div>
+                                </div>
+                                <div class="panel">
+                                    <div class="panel-title">🇬🇧 Taille UK</div>
+                                    <div id="size-uk"
+                                        style="font-size: 1.5rem; font-weight: 700; color: var(--color-charcoal);">--
+                                    </div>
+                                </div>
+                                <div class="panel">
+                                    <div class="panel-title">📐 Lettre</div>
+                                    <div id="size-letter"
+                                        style="font-size: 1.5rem; font-weight: 700; color: var(--color-beige-dark);">--
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Size Table -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h3 style="margin: 0;">📊 Tableau des Tailles Femme</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="table" id="size-table-women">
+                                <thead>
+                                    <tr>
+                                        <th>Tour Poitrine (pouces)</th>
+                                        <th>Tour Poitrine (cm)</th>
+                                        <th>Taille Lettre</th>
+                                        <th>Taille FR/EU</th>
+                                        <th>Taille US</th>
+                                        <th>Taille UK</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>28-30"</td>
+                                        <td>71-76</td>
+                                        <td>XXS</td>
+                                        <td>32-34</td>
+                                        <td>0-2</td>
+                                        <td>4-6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>30-32"</td>
+                                        <td>76-81</td>
+                                        <td>XS</td>
+                                        <td>34-36</td>
+                                        <td>2-4</td>
+                                        <td>6-8</td>
+                                    </tr>
+                                    <tr>
+                                        <td>32-34"</td>
+                                        <td>81-86</td>
+                                        <td>S</td>
+                                        <td>36-38</td>
+                                        <td>4-6</td>
+                                        <td>8-10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>34-36"</td>
+                                        <td>86-91</td>
+                                        <td>M</td>
+                                        <td>38-40</td>
+                                        <td>6-8</td>
+                                        <td>10-12</td>
+                                    </tr>
+                                    <tr>
+                                        <td>36-38"</td>
+                                        <td>91-97</td>
+                                        <td>M/L</td>
+                                        <td>40-42</td>
+                                        <td>8-10</td>
+                                        <td>12-14</td>
+                                    </tr>
+                                    <tr>
+                                        <td>38-40"</td>
+                                        <td>97-102</td>
+                                        <td>L</td>
+                                        <td>42-44</td>
+                                        <td>10-12</td>
+                                        <td>14-16</td>
+                                    </tr>
+                                    <tr>
+                                        <td>40-42"</td>
+                                        <td>102-107</td>
+                                        <td>L/XL</td>
+                                        <td>44-46</td>
+                                        <td>12-14</td>
+                                        <td>16-18</td>
+                                    </tr>
+                                    <tr>
+                                        <td>42-44"</td>
+                                        <td>107-112</td>
+                                        <td>XL</td>
+                                        <td>46-48</td>
+                                        <td>14-16</td>
+                                        <td>18-20</td>
+                                    </tr>
+                                    <tr>
+                                        <td>44-46"</td>
+                                        <td>112-117</td>
+                                        <td>XL/2XL</td>
+                                        <td>48-50</td>
+                                        <td>16-18</td>
+                                        <td>20-22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>46-48"</td>
+                                        <td>117-122</td>
+                                        <td>2XL</td>
+                                        <td>50-52</td>
+                                        <td>18-20</td>
+                                        <td>22-24</td>
+                                    </tr>
+                                    <tr>
+                                        <td>48-50"</td>
+                                        <td>122-127</td>
+                                        <td>2XL/3XL</td>
+                                        <td>52-54</td>
+                                        <td>20-22</td>
+                                        <td>24-26</td>
+                                    </tr>
+                                    <tr>
+                                        <td>50-52"</td>
+                                        <td>127-132</td>
+                                        <td>3XL</td>
+                                        <td>54-56</td>
+                                        <td>22-24</td>
+                                        <td>26-28</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Tableaux -->
+            <div class="tab-content" id="tab-tableau">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 style="margin: 0;">📊 Tableau Complet des Aiguilles</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="table" id="needle-full-table">
+                                <thead>
+                                    <tr>
+                                        <th>Métrique (mm)</th>
+                                        <th>US</th>
+                                        <th>UK</th>
+                                        <th>Catégorie de laine</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>0</td>
+                                        <td>14</td>
+                                        <td>Lace / Dentelle</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.25</td>
+                                        <td>1</td>
+                                        <td>13</td>
+                                        <td>Fingering / Chaussettes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.5</td>
+                                        <td>1.5</td>
+                                        <td>12-13</td>
+                                        <td>Fingering</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.75</td>
+                                        <td>2</td>
+                                        <td>12</td>
+                                        <td>Fingering / Sport</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>2.5</td>
+                                        <td>11</td>
+                                        <td>Sport</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.25</td>
+                                        <td>3</td>
+                                        <td>10</td>
+                                        <td>DK légère</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.5</td>
+                                        <td>4</td>
+                                        <td>9-10</td>
+                                        <td>DK</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.75</td>
+                                        <td>5</td>
+                                        <td>9</td>
+                                        <td>DK</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>6</td>
+                                        <td>8</td>
+                                        <td>DK / Worsted légère</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4.5</td>
+                                        <td>7</td>
+                                        <td>7</td>
+                                        <td>Worsted</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>8</td>
+                                        <td>6</td>
+                                        <td>Worsted</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5.5</td>
+                                        <td>9</td>
+                                        <td>5</td>
+                                        <td>Worsted / Aran</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>10</td>
+                                        <td>4</td>
+                                        <td>Aran</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6.5</td>
+                                        <td>10.5</td>
+                                        <td>3</td>
+                                        <td>Aran / Bulky</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>10.75</td>
+                                        <td>2</td>
+                                        <td>Bulky</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>11</td>
+                                        <td>0</td>
+                                        <td>Bulky</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>13</td>
+                                        <td>00</td>
+                                        <td>Super Bulky</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>15</td>
+                                        <td>000</td>
+                                        <td>Super Bulky</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12</td>
+                                        <td>17</td>
+                                        <td>-</td>
+                                        <td>Jumbo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>15</td>
+                                        <td>19</td>
+                                        <td>-</td>
+                                        <td>Jumbo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>19</td>
+                                        <td>35</td>
+                                        <td>-</td>
+                                        <td>Jumbo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>25</td>
+                                        <td>50</td>
+                                        <td>-</td>
+                                        <td>Jumbo</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">🧶</span>
+                    <span class="logo-text">Tricot Facile</span>
+                    <p>La boîte à outils des passionné(e)s de tricot</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Outils</h4>
+                        <ul>
+                            <li><a href="convertisseurs.html">Convertisseurs</a></li>
+                            <li><a href="traducteur.html">Traducteur</a></li>
+                            <li><a href="equivalent-laine.html">Équivalent Laine</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Ressources</h4>
+                        <ul>
+                            <li><a href="repertoire.html">Répertoire</a></li>
+                            <li><a href="recherche-image.html">Recherche Image</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Tricot Facile. Fait avec 🧶 pour les tricoteuses et tricoteurs.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/convertisseurs.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
