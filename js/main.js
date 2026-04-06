@@ -161,4 +161,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     console.log('%c🧶 Tricot Facile', 'font-size: 24px; font-weight: bold; color: #C67B5C;');
     console.log('%cLa boîte à outils des passionné(e)s de tricot', 'font-size: 14px; color: #8FA68A;');
+    // ============================================
+    // PWA - Service Worker Registration
+    // ============================================
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('SW enregistré avec succès:', registration.scope);
+                })
+                .catch(error => {
+                    console.log('Échec de l\'enregistrement du SW:', error);
+                });
+        });
+    }
 });
