@@ -306,6 +306,52 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Convertisseur de répartition
+    const repCurrentInput = document.getElementById('rep-current');
+    const repTargetInput = document.getElementById('rep-target');
+    
+    function updateRepartition() {
+        const current = parseInt(repCurrentInput?.value);
+        const target = parseInt(repTargetInput?.value);
+        const container = document.getElementById('rep-result-container');
+        const textElem = document.getElementById('rep-result-text');
+        
+        if (current && target && current > 0 && target > 0) {
+            container.style.display = 'block';
+            textElem.innerHTML = calculateEvenDistribution(current, target);
+        } else {
+            container.style.display = 'none';
+        }
+    }
+    
+    if (repCurrentInput && repTargetInput) {
+        repCurrentInput.addEventListener('input', updateRepartition);
+        repTargetInput.addEventListener('input', updateRepartition);
+    }
+
+    // Convertisseur d'échantillon
+    const gaugePatternInput = document.getElementById('gauge-pattern');
+    const gaugeUserInput = document.getElementById('gauge-user');
+    
+    function updateGauge() {
+        const pattern = parseFloat(gaugePatternInput?.value);
+        const user = parseFloat(gaugeUserInput?.value);
+        const container = document.getElementById('gauge-result-container');
+        const textElem = document.getElementById('gauge-result-text');
+        
+        if (pattern && user && pattern > 0 && user > 0) {
+            container.style.display = 'block';
+            textElem.innerHTML = calculateGaugeDifference(pattern, user);
+        } else {
+            container.style.display = 'none';
+        }
+    }
+    
+    if (gaugePatternInput && gaugeUserInput) {
+        gaugePatternInput.addEventListener('input', updateGauge);
+        gaugeUserInput.addEventListener('input', updateGauge);
+    }
 });
 
 /**
@@ -328,6 +374,94 @@ function initTabs() {
             document.getElementById(`tab-${tabId}`)?.classList.add('active');
         });
     });
+}
+
+/**
+ * Calcule la répartition des augmentations ou diminutions
+ */
+function calculateEvenDistribution(current, target) {
+    if (current === target) return "Le nombre de mailles de départ et d'arrivée est identique. Aucune modification nécessaire.";
+    
+    let isIncrease = target > current;
+    let diff = Math.abs(current - target);
+    
+    if (isIncrease) {
+        let interval = current / diff;
+        let baseInterval = Math.floor(interval);
+        let remainder = current % diff;
+        
+        let instructions = [];
+        if (remainder === 0) {
+           instructions.push(`Répétez <strong>[Tricotez ${baseInterval} maille(s), 1 augmentation]</strong> ${diff} fois.`);
+        } else {
+           instructions.push(`Répétez <strong>[Tricotez ${baseInterval} maille(s), 1 augmentation]</strong> ${diff - remainder} fois.`);
+           instructions.push(`Puis répétez <strong>[Tricotez ${baseInterval + 1} maille(s), 1 augmentation]</strong> ${remainder} fois.`);
+        }
+        instructions.push(`<br><small style="color:var(--color-sage-dark);">💡 Vous avez ajouté ${diff} mailles. Total : ${target} mailles.</small>`);
+        return instructions.join('<br>');
+    } else {
+        if (diff > current / 2) {
+           return "⚠️ Trop de diminutions demandées pour un seul rang. Cela risque de déformer considérablement le tricot. Essayez plutôt de répartir ces diminutions sur plusieurs rangs.";
+        }
+        let interval = current / diff;
+        let baseInterval = Math.floor(interval);
+        let remainder = current % diff;
+        
+        let stitchesToKnit = baseInterval - 2;
+        
+        let instructions = [];
+        if (remainder === 0) {
+            if (stitchesToKnit === 0) {
+                instructions.push(`Répétez <strong>[1 diminution]</strong> ${diff} fois.`);
+            } else {
+                instructions.push(`Répétez <strong>[Tricotez ${stitchesToKnit} maille(s), 1 diminution]</strong> ${diff} fois.`);
+            }
+        } else {
+            if (stitchesToKnit === 0) {
+                instructions.push(`Répétez <strong>[1 diminution]</strong> ${diff - remainder} fois.`);
+            } else {
+                instructions.push(`Répétez <strong>[Tricotez ${stitchesToKnit} maille(s), 1 diminution]</strong> ${diff - remainder} fois.`);
+            }
+            instructions.push(`Puis répétez <strong>[Tricotez ${stitchesToKnit + 1} maille(s), 1 diminution]</strong> ${remainder} fois.`);
+        }
+        instructions.push(`<br><small style="color:var(--color-sage-dark);">💡 Vous avez retiré ${diff} mailles. Total : ${target} mailles.</small>`);
+        return instructions.join('<br>');
+    }
+}
+
+/**
+ * Calcule la différence d'échantillon et suggère des ajustements
+ */
+function calculateGaugeDifference(pattern, user) {
+    if (pattern === user) {
+        return "✨ <strong>Félicitations !</strong> Votre échantillon correspond parfaitement au modèle. Vous pouvez suivre les instructions sans faire aucun changement.";
+    }
+    
+    let ratio = pattern / user;
+    let diffPercent = Math.abs(Math.round((1 - ratio) * 100));
+    let isSmaller = user > pattern;
+    
+    let result = [];
+    
+    if (isSmaller) {
+        result.push(`⚠️ Vous obtenez plus de mailles pour 10 cm que le modèle : <strong>vos mailles sont donc plus serrées</strong>.`);
+        result.push(`Si vous suivez le patron tel quel, votre vêtement sera environ <strong style="color:var(--color-terracotta);">${diffPercent}% plus petit</strong>.`);
+        result.push(`<br><strong>💡 Que pouvez-vous faire ?</strong>`);
+        result.push(`<ul style="margin-left: 1.5rem; margin-top: 0.5rem; list-style-type: disc;">`);
+        result.push(`<li style="margin-bottom: 0.5rem;">Recommencez un échantillon avec des aiguilles <strong>plus grandes</strong> (ex: si vous utilisiez du 4 mm, essayez avec du 4.5 mm).</li>`);
+        result.push(`<li><strong>Ou</strong>, tricotez une <strong>taille au-dessus</strong>. Par exemple, si vous vouliez la taille S, suivez les instructions de la taille M.</li>`);
+        result.push(`</ul>`);
+    } else {
+        result.push(`⚠️ Vous obtenez moins de mailles pour 10 cm que le modèle : <strong>vos mailles sont donc plus lâches</strong>.`);
+        result.push(`Si vous suivez le patron tel quel, votre vêtement sera environ <strong style="color:var(--color-terracotta);">${diffPercent}% plus grand</strong>.`);
+        result.push(`<br><strong>💡 Que pouvez-vous faire ?</strong>`);
+        result.push(`<ul style="margin-left: 1.5rem; margin-top: 0.5rem; list-style-type: disc;">`);
+        result.push(`<li style="margin-bottom: 0.5rem;">Recommencez un échantillon avec des aiguilles <strong>plus petites</strong> (ex: si vous utilisiez du 4 mm, essayez avec du 3.5 mm).</li>`);
+        result.push(`<li><strong>Ou</strong>, tricotez une <strong>taille en-dessous</strong>. Par exemple, si vous vouliez la taille L, suivez les instructions de la taille M.</li>`);
+        result.push(`</ul>`);
+    }
+    
+    return result.join('<br>');
 }
 
 // Export pour utilisation dans d'autres modules

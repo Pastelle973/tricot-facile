@@ -46,6 +46,23 @@ const UK_TO_METRIC = {
 // ============================================
 
 /**
+ * Charge un script publiquement de manière dynamique pour les performances
+ */
+function loadScript(src) {
+    return new Promise((resolve, reject) => {
+        if (document.querySelector(`script[src="${src}"]`)) {
+            resolve();
+            return;
+        }
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
+}
+
+/**
  * Convertit une valeur en pouces en centimètres
  */
 function inchToCm(inches) {
@@ -65,6 +82,21 @@ function parseFraction(char) {
 }
 
 /**
+ * Échappe les caractères spéciaux HTML pour éviter les failles XSS
+ */
+function escapeHTML(str) {
+    return str.replace(/[&<>'"]/g, 
+        tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag] || tag)
+    );
+}
+
+/**
  * Traduit un texte complet
  */
 function translatePattern(text, options = {}) {
@@ -75,7 +107,7 @@ function translatePattern(text, options = {}) {
         highlight = true
     } = options;
 
-    let result = text;
+    let result = escapeHTML(text);
     const stats = {
         termsTranslated: 0,
         needlesConverted: 0,
@@ -196,6 +228,10 @@ function escapeRegex(string) {
  * Extrait le texte d'une image via OCR
  */
 async function extractTextFromImage(imageFile) {
+    document.getElementById('loading').innerHTML = '<div class="spinner" style="margin: 0 auto;"></div><p class="mt-2">Chargement du moteur de reconnaissance visuelle (1-2s)...</p>';
+    await loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js');
+    document.getElementById('loading').innerHTML = '<div class="spinner" style="margin: 0 auto;"></div><p class="mt-2">Analyse de l\'image en cours...</p>';
+
     const { createWorker } = Tesseract;
     const worker = await createWorker('eng');
 
@@ -212,6 +248,10 @@ async function extractTextFromImage(imageFile) {
  * Extrait le texte d'un PDF
  */
 async function extractTextFromPDF(pdfFile) {
+    document.getElementById('loading').innerHTML = '<div class="spinner" style="margin: 0 auto;"></div><p class="mt-2">Chargement du moteur PDF (1-2s)...</p>';
+    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js');
+    document.getElementById('loading').innerHTML = '<div class="spinner" style="margin: 0 auto;"></div><p class="mt-2">Lecture du PDF en cours...</p>';
+
     const arrayBuffer = await pdfFile.arrayBuffer();
 
     // Charger le PDF
@@ -359,12 +399,7 @@ async function handleTranslate() {
             case 'text':
                 sourceText = document.getElementById('text-input').value;
                 break;
-            case 'url':
-                // Note: CORS limiterait cette fonctionnalité
-                const url = document.getElementById('url-input').value;
-                if (!url) throw new Error('Veuillez entrer une URL');
-                // Pour contourner CORS, on utiliserait un proxy ou on demanderait de copier-coller
-                throw new Error('L\'extraction d\'URL est limitée par les restrictions de sécurité du navigateur. Veuillez copier-coller le texte dans l\'onglet "Texte".');
+
             case 'file':
                 const file = document.getElementById('file-input').files[0];
                 if (!file) throw new Error('Veuillez sélectionner un fichier');
