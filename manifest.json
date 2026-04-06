@@ -2,7 +2,7 @@
   "name": "Tricot Facile",
   "short_name": "Tricot Facile",
   "description": "Outils et ressources pour tricoteuses : convertisseurs, traducteur, répertoire.",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#FAF7F2",
   "theme_color": "#FAF7F2",
