@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Traduisez vos patrons de tricot anglais en français avec les termes techniques, dimensions et tailles d'aiguilles convertis automatiquement.">
+    <meta property="og:title" content="Tricot Facile | Outils et Ressources pour Tricoteuses">
+    <meta property="og:description" content="Tricot Facile - Votre boîte à outils complète pour le tricot.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧶</text></svg>">
     <title>Traducteur de Modèles | Tricot Facile</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,12 +27,12 @@
                 <span class="logo-icon">🧶</span>
                 <span class="logo-text">Tricot Facile</span>
             </a>
-            <button class="nav-toggle" aria-label="Toggle navigation">
+            <button class="nav-toggle" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="nav-menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html" class="nav-link">Accueil</a></li>
                 <li><a href="convertisseurs.html" class="nav-link">Convertisseurs</a></li>
                 <li><a href="traducteur.html" class="nav-link active">Traducteur</a></li>
@@ -53,46 +57,30 @@
         <div class="container">
 
             <!-- Input Tabs -->
-            <div class="tabs">
-                <button class="tab-btn active" data-tab="text">📄 Texte</button>
-                <button class="tab-btn" data-tab="url">🌐 URL</button>
-                <button class="tab-btn" data-tab="file">📁 Fichier</button>
-                <button class="tab-btn" data-tab="image">🖼️ Image</button>
+            <div class="tabs" role="tablist" aria-label="Méthodes de traduction">
+                <button class="tab-btn active" data-tab="text" role="tab" aria-selected="true" aria-controls="tab-text" id="btn-tab-text">📄 Texte</button>
+                <button class="tab-btn" data-tab="file" role="tab" aria-selected="false" aria-controls="tab-file" id="btn-tab-file">📁 Fichier</button>
+                <button class="tab-btn" data-tab="image" role="tab" aria-selected="false" aria-controls="tab-image" id="btn-tab-image">🖼️ Image</button>
             </div>
 
             <div class="card mb-4">
                 <div class="card-body">
 
                     <!-- Tab: Text Input -->
-                    <div class="tab-content active" id="tab-text">
+                    <div class="tab-content active" id="tab-text" role="tabpanel" aria-labelledby="btn-tab-text">
                         <div class="form-group">
-                            <label class="form-label">Collez votre texte anglais ici</label>
+                            <label class="form-label" for="text-input">Collez votre texte anglais ici</label>
                             <textarea class="form-textarea" id="text-input" rows="10"
                                 placeholder="Cast on 120 sts using US 5 needles. Work in stockinette stitch for 4 inches..."></textarea>
                         </div>
                     </div>
 
-                    <!-- Tab: URL Input -->
-                    <div class="tab-content" id="tab-url">
-                        <div class="alert alert-info mb-3">
-                            <strong>ℹ️ Note :</strong> Entrez l'URL d'une page de patron. Le contenu sera extrait et
-                            traduit.
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">URL du patron</label>
-                            <input type="url" class="form-input" id="url-input"
-                                placeholder="https://www.example.com/pattern">
-                        </div>
-                        <div class="alert alert-warning">
-                            <strong>⚠️ Limitation :</strong> Certains sites bloquent l'extraction de contenu. Si cela ne
-                            fonctionne pas, copiez-collez le texte manuellement dans l'onglet "Texte".
-                        </div>
-                    </div>
+
 
                     <!-- Tab: File Input -->
-                    <div class="tab-content" id="tab-file">
+                    <div class="tab-content" id="tab-file" role="tabpanel" aria-labelledby="btn-tab-file">
                         <div class="form-group">
-                            <label class="form-label">Télécharger un fichier (PDF ou TXT)</label>
+                            <label class="form-label" for="file-input">Télécharger un fichier (PDF ou TXT)</label>
                             <div class="form-file-upload">
                                 <input type="file" id="file-input" accept=".pdf,.txt,.doc,.docx">
                                 <div class="form-file-upload-icon">📄</div>
@@ -104,13 +92,13 @@
                     </div>
 
                     <!-- Tab: Image Input -->
-                    <div class="tab-content" id="tab-image">
+                    <div class="tab-content" id="tab-image" role="tabpanel" aria-labelledby="btn-tab-image">
                         <div class="alert alert-info mb-3">
                             <strong>ℹ️ OCR :</strong> L'image sera analysée pour extraire le texte (reconnaissance
                             optique de caractères).
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Télécharger une image</label>
+                            <label class="form-label" for="image-input">Télécharger une image</label>
                             <div class="form-file-upload">
                                 <input type="file" id="image-input" accept="image/*">
                                 <div class="form-file-upload-icon">🖼️</div>
@@ -236,6 +224,7 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
+                        <label for="dict-search" class="visually-hidden" style="display:none;">Rechercher un terme</label>
                         <input type="text" class="form-input" id="dict-search"
                             placeholder="Rechercher un terme (anglais ou français)...">
                     </div>
@@ -279,10 +268,7 @@
         </div>
     </footer>
 
-    <!-- Tesseract.js for OCR -->
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-    <!-- PDF.js for PDF parsing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <!-- Scripts loaded later dynamically (Tesseract & PDF.js) -->
 
     <script src="js/dictionnaire.js"></script>
     <script src="js/convertisseurs.js"></script>

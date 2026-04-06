@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Convertisseurs tricot : aiguilles US/UK vers métrique, pouces vers centimètres, tailles de vêtements internationales.">
+    <meta property="og:title" content="Tricot Facile | Outils et Ressources pour Tricoteuses">
+    <meta property="og:description" content="Tricot Facile - Votre boîte à outils complète pour le tricot.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧶</text></svg>">
     <title>Convertisseurs | Tricot Facile</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,12 +27,12 @@
                 <span class="logo-icon">🧶</span>
                 <span class="logo-text">Tricot Facile</span>
             </a>
-            <button class="nav-toggle" aria-label="Toggle navigation">
+            <button class="nav-toggle" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="nav-menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html" class="nav-link">Accueil</a></li>
                 <li><a href="convertisseurs.html" class="nav-link active">Convertisseurs</a></li>
                 <li><a href="traducteur.html" class="nav-link">Traducteur</a></li>
@@ -53,22 +57,24 @@
         <div class="container">
 
             <!-- Tabs Navigation -->
-            <div class="tabs">
-                <button class="tab-btn active" data-tab="aiguilles">🪡 Aiguilles</button>
-                <button class="tab-btn" data-tab="dimensions">📐 Pouces → cm</button>
-                <button class="tab-btn" data-tab="tailles">👕 Tailles Vêtements</button>
-                <button class="tab-btn" data-tab="tableau">📊 Tableaux Complets</button>
+            <div class="tabs" role="tablist" aria-label="Type de convertisseur">
+                <button class="tab-btn active" data-tab="aiguilles" role="tab" aria-selected="true" aria-controls="tab-aiguilles" id="btn-tab-aiguilles">🪡 Aiguilles</button>
+                <button class="tab-btn" data-tab="dimensions" role="tab" aria-selected="false" aria-controls="tab-dimensions" id="btn-tab-dimensions">📐 Pouces → cm</button>
+                <button class="tab-btn" data-tab="tailles" role="tab" aria-selected="false" aria-controls="tab-tailles" id="btn-tab-tailles">👕 Tailles Vêtements</button>
+                <button class="tab-btn" data-tab="repartition" role="tab" aria-selected="false" aria-controls="tab-repartition" id="btn-tab-repartition">🧮 Répartition</button>
+                <button class="tab-btn" data-tab="echantillon" role="tab" aria-selected="false" aria-controls="tab-echantillon" id="btn-tab-echantillon">📏 Échantillon</button>
+                <button class="tab-btn" data-tab="tableau" role="tab" aria-selected="false" aria-controls="tab-tableau" id="btn-tab-tableau">📊 Tableaux</button>
             </div>
 
             <!-- Tab: Aiguilles -->
-            <div class="tab-content active" id="tab-aiguilles">
+            <div class="tab-content active" id="tab-aiguilles" role="tabpanel" aria-labelledby="btn-tab-aiguilles">
                 <div class="converter-grid">
                     <!-- US to Metric -->
                     <div class="converter-card">
                         <h3><span>🇺🇸</span> US → Métrique</h3>
                         <div class="converter-row">
                             <div class="form-group">
-                                <label class="form-label">Taille US</label>
+                                <label class="form-label" for="needle-us-input">Taille US</label>
                                 <select class="form-select" id="needle-us-input">
                                     <option value="">Choisir...</option>
                                     <option value="0">US 0</option>
@@ -111,7 +117,7 @@
                         <h3><span>🇬🇧</span> UK → Métrique</h3>
                         <div class="converter-row">
                             <div class="form-group">
-                                <label class="form-label">Taille UK</label>
+                                <label class="form-label" for="needle-uk-input">Taille UK</label>
                                 <select class="form-select" id="needle-uk-input">
                                     <option value="">Choisir...</option>
                                     <option value="14">UK 14</option>
@@ -149,7 +155,7 @@
                         <h3><span>🇫🇷</span> Métrique → US / UK</h3>
                         <div class="converter-row">
                             <div class="form-group">
-                                <label class="form-label">Taille mm</label>
+                                <label class="form-label" for="needle-metric-input">Taille mm</label>
                                 <select class="form-select" id="needle-metric-input">
                                     <option value="">Choisir...</option>
                                     <option value="2">2 mm</option>
@@ -192,7 +198,7 @@
                         <h3><span>🔗</span> Longueur Câble Circulaire</h3>
                         <div class="converter-row">
                             <div class="form-group">
-                                <label class="form-label">Longueur (pouces)</label>
+                                <label class="form-label" for="cable-input">Longueur (pouces)</label>
                                 <select class="form-select" id="cable-input">
                                     <option value="">Choisir...</option>
                                     <option value="9">9"</option>
@@ -228,14 +234,14 @@
             </div>
 
             <!-- Tab: Dimensions -->
-            <div class="tab-content" id="tab-dimensions">
+            <div class="tab-content" id="tab-dimensions" role="tabpanel" aria-labelledby="btn-tab-dimensions">
                 <div class="converter-grid">
                     <!-- Inches to CM -->
                     <div class="converter-card">
                         <h3><span>📐</span> Pouces → Centimètres</h3>
                         <div class="converter-row">
                             <div class="form-group">
-                                <label class="form-label">Valeur en pouces</label>
+                                <label class="form-label" for="inches-input">Valeur en pouces</label>
                                 <input type="text" class="form-input" id="inches-input" placeholder="Ex: 24 ou 34 1/4">
                             </div>
                             <span class="converter-arrow">→</span>
@@ -257,7 +263,7 @@
                         <h3><span>📏</span> Centimètres → Pouces</h3>
                         <div class="converter-row">
                             <div class="form-group">
-                                <label class="form-label">Valeur en cm</label>
+                                <label class="form-label" for="cm-input">Valeur en cm</label>
                                 <input type="number" class="form-input" id="cm-input" placeholder="Ex: 61" step="0.1">
                             </div>
                             <span class="converter-arrow">→</span>
@@ -322,7 +328,7 @@
             </div>
 
             <!-- Tab: Tailles -->
-            <div class="tab-content" id="tab-tailles">
+            <div class="tab-content" id="tab-tailles" role="tabpanel" aria-labelledby="btn-tab-tailles">
                 <div class="converter-grid">
                     <!-- Size Converter -->
                     <div class="converter-card" style="grid-column: 1 / -1;">
@@ -336,7 +342,7 @@
 
                         <div class="converter-row">
                             <div class="form-group">
-                                <label class="form-label">Tour de poitrine (pouces)</label>
+                                <label class="form-label" for="size-inches-input">Tour de poitrine (pouces)</label>
                                 <input type="text" class="form-input" id="size-inches-input" placeholder="Ex: 44 1/2">
                             </div>
                             <span class="converter-arrow">→</span>
@@ -505,8 +511,62 @@
                 </div>
             </div>
 
+            <!-- Tab: Répartition -->
+            <div class="tab-content" id="tab-repartition" role="tabpanel" aria-labelledby="btn-tab-repartition">
+                <div class="converter-card" style="grid-column: 1 / -1; margin-bottom: 2rem;">
+                    <h3><span>🧮</span> Calculateur de Répartition</h3>
+                    <p class="text-muted" style="margin-bottom: 1.5rem;">Calculez comment répartir équitablement vos augmentations ou diminutions sur un rang, pour éviter d'avoir de l'irrégularité dans votre tricot.</p>
+                    
+                    <div class="converter-row">
+                        <div class="form-group">
+                            <label class="form-label" for="rep-current">Mailles actuelles</label>
+                            <input type="number" class="form-input" id="rep-current" placeholder="ex: 100" min="2">
+                        </div>
+                        <span class="converter-arrow" style="font-size: 2rem; color: var(--color-terracotta);">→</span>
+                        <div class="form-group">
+                            <label class="form-label" for="rep-target">Mailles souhaitées</label>
+                            <input type="number" class="form-input" id="rep-target" placeholder="ex: 120" min="2">
+                        </div>
+                    </div>
+                    
+                    <div class="panel mt-4" id="rep-result-container" style="display: none; background: var(--color-sage-light); color: var(--color-charcoal);">
+                        <h4 style="margin-bottom: 1rem; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem;">📝 Explications du patron :</h4>
+                        <div id="rep-result-text" style="font-size: 1.125rem; font-weight: 500; line-height: 1.6;">
+                            <!-- Le JS injectera la réponse ici -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Échantillon -->
+            <div class="tab-content" id="tab-echantillon" role="tabpanel" aria-labelledby="btn-tab-echantillon">
+                <div class="converter-card" style="grid-column: 1 / -1; margin-bottom: 2rem;">
+                    <h3><span>📏</span> Échantillon Ajusté / Différent</h3>
+                    <p class="text-muted" style="margin-bottom: 1.5rem;">Votre échantillon ne correspond pas exactement au modèle ? Découvrez l'impact sur la taille finale du vêtement et comment ajuster.</p>
+                    
+                    <div class="converter-row">
+                        <div class="form-group">
+                            <label class="form-label" for="gauge-pattern">Échantillon patron (pour 10 cm)</label>
+                            <input type="number" class="form-input" id="gauge-pattern" placeholder="ex: 20" min="5" step="0.5">
+                        </div>
+                        <span class="converter-arrow" style="font-size: 2rem; color: var(--color-terracotta);">VS</span>
+                        <div class="form-group">
+                            <label class="form-label" for="gauge-user">Votre Échantillon (pour 10 cm)</label>
+                            <input type="number" class="form-input" id="gauge-user" placeholder="ex: 22" min="5" step="0.5">
+                        </div>
+                    </div>
+                    
+                    <div class="panel mt-4" id="gauge-result-container" style="display: none; background: var(--color-beige); color: var(--color-charcoal);">
+                        <h4 style="margin-bottom: 1rem; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem;">📊 Analyse et Solutions :</h4>
+                        <div id="gauge-result-text" style="font-size: 1.125rem; font-weight: 500; line-height: 1.6;">
+                            <!-- JS Inject -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Tab: Tableaux -->
-            <div class="tab-content" id="tab-tableau">
+            <div class="tab-content" id="tab-tableau" role="tabpanel" aria-labelledby="btn-tab-tableau">
                 <div class="card">
                     <div class="card-header">
                         <h3 style="margin: 0;">📊 Tableau Complet des Aiguilles</h3>
